@@ -9,7 +9,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'dist');
 
 const DIRS = ['game', 'assets', 'data', 'scripts', 'styles'];
-const ROOT_FILES = ['game-shell.js', 'service-worker.js', 'manifest.json', 'styles.css', 'kiddoxy.png', 'favicon.ico', '_headers', '_redirects'];
+const ROOT_FILES = ['game-shell.js', 'service-worker.js', 'manifest.json', 'styles.css', 'kiddoxy.png', 'favicon.ico', '_headers', '_redirects', 'ads.txt'];
 const SKIP_IN_SCRIPTS = new Set(['build-pages.mjs', 'generate_games_index.js', 'generate-packs.mjs']);
 
 rmSync(out, { recursive: true, force: true });
