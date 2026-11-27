@@ -47,8 +47,9 @@ export function injectFooter() {
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Resources</div>
-        <a href="/privacy.html">Privacy & Safety</a>
+        <a href="/privacy.html">Privacy Policy</a>
         <a href="/help.html">Help & FAQ</a>
+        <a href="/contact.html">Contact Us</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">About</div>

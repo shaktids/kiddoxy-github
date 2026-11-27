@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us — Kiddoxy</title>
+  <meta name="description" content="Contact the Kiddoxy team with questions, feedback, privacy requests or game ideas." />
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:8px 0 22px; }
+    .contact-box { background:rgba(255,255,255,0.8); border:1px solid #e2e8f0; border-radius:16px; padding:18px; }
+    .contact-box h2 { font-size:1.08rem; font-weight:800; color:#222; margin:0 0 6px; }
+    .contact-box p { color:#444; font-size:1rem; margin:0 0 8px; }
+    .contact-box a { color:#3b82f6; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body style="background: linear-gradient(120deg, #e0e7ef 0%, #f8fafc 100%); min-height:100vh;">
+  <div class="content-wrap" style="min-height:100vh;align-items:center;">
+    <main class="content-card" style="background:rgba(255,255,255,0.65);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 8px 32px 0 rgba(60,60,90,0.10);border-radius:22px;padding:38px 32px 28px 32px;margin:32px 16px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <svg width="36" height="36" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="12" fill="#6366f1"/><path d="M6 8.5L12 13L18 8.5V16C18 16.8 17.3 17.5 16.5 17.5H7.5C6.7 17.5 6 16.8 6 16V8.5Z" fill="#fff"/></svg>
+        <h1 style="font-size:2.1rem;font-weight:900;color:#222;margin:0;letter-spacing:-1px;">Contact Us</h1>
+      </div>
+      <p style="font-size:1.13rem;color:#333;margin-bottom:18px;">We'd love to hear from parents, teachers and anyone who uses Kiddoxy. Send us an email and we'll reply as soon as we can, usually within 2–3 working days.</p>
+
+      <div class="contact-grid">
+        <div class="contact-box">
+          <h2>General questions &amp; feedback</h2>
+          <p>Questions about the site, bug reports, or ideas for new games.</p>
+          <a href="mailto:info@kiddoxy.com?subject=Kiddoxy%20feedback">info@kiddoxy.com</a>
+        </div>
+        <div class="contact-box">
+          <h2>Privacy requests</h2>
+          <p>If you think a child shared personal information with us, or you have a question about our <a href="/privacy.html">Privacy Policy</a>.</p>
+          <a href="mailto:info@kiddoxy.com?subject=Privacy%20request">info@kiddoxy.com</a>
+        </div>
+        <div class="contact-box">
+          <h2>Ads &amp; content concerns</h2>
+          <p>Tell us if you see an ad or any content that doesn't feel right for children. Please include the page address.</p>
+          <a href="mailto:info@kiddoxy.com?subject=Ad%20or%20content%20concern">info@kiddoxy.com</a>
+        </div>
+      </div>
+
+      <section style="margin-bottom:18px;">
+        <h2 style="font-size:1.1rem;font-weight:800;color:#222;margin:0 0 6px;">Find us online</h2>
+        <p style="color:#333;font-size:1.04rem;margin:0;">Watch our learning videos on <a href="https://www.youtube.com/@Kiddoxy" target="_blank" rel="noopener" style="color:#3b82f6;text-decoration:underline;">YouTube</a>. For common questions, see <a href="/help.html" style="color:#3b82f6;text-decoration:underline;">Help &amp; FAQ</a>.</p>
+      </section>
+      <p style="color:#555;font-size:0.98rem;margin:0 0 6px;">Kids: please ask a parent or grown-up to send messages for you.</p>
+
+      <div style="text-align:center;margin-top:18px;">
+        <a href="/index.html" style="display:inline-block;padding:10px 28px;font-size:1.08rem;font-weight:700;color:#fff;background:linear-gradient(90deg,#6366f1 0%,#3b82f6 100%);border-radius:12px;text-decoration:none;box-shadow:0 2px 8px 0 rgba(60,60,90,0.10);">Back to Home</a>
+      </div>
+    </main>
+  </div>
+  <!-- Parental modal / age gate -->
+  <div id="ageModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="modal-content">
+      <h2>Are you a parent?</h2>
+      <p>Please enter your birth year to continue to parental settings.</p>
+      <input id="birthYear" type="number" placeholder="e.g. 1980" min="1900" max="2025" />
+      <div class="modal-actions">
+        <button id="ageSubmit">Confirm</button>
+        <button id="ageCancel" class="secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    import { injectNavbar, injectFooter } from '/scripts/navbar-footer.js';
+    injectNavbar();
+    injectFooter();
+    window.addEventListener('DOMContentLoaded', () => {
+      var parentBtn = document.getElementById('parent-btn');
+      if (parentBtn) parentBtn.addEventListener('click', function(){ if (typeof showParentalGate === 'function') showParentalGate(); });
+      var ageSubmit = document.getElementById('ageSubmit');
+      if (ageSubmit) ageSubmit.addEventListener('click', function(){
+        const year = parseInt(document.getElementById('birthYear').value || '0', 10);
+        if (isNaN(year)) return;
+        if (typeof handleParentalConfirm === 'function') handleParentalConfirm(year);
+      });
+      var ageCancel = document.getElementById('ageCancel');
+      if (ageCancel) ageCancel.addEventListener('click', function(){ if (typeof closeParentalModal === 'function') closeParentalModal(); });
+    });
+  </script>
+  <script src="/game-shell.js"></script>
+</body>
+</html>
